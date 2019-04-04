@@ -1,9 +1,7 @@
 from selenium import webdriver
 import unittest
 
-
-class LoginTest(unittest.TestCase):
-
+class mathStatus(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.driver = webdriver.Chrome()
@@ -13,31 +11,28 @@ class LoginTest(unittest.TestCase):
         # driver.find_element_by_xpath("//*[@id='page']/header/div[1]/div[2]/ul[2]/li/a").click()
         self.driver.find_element_by_xpath(
             "//*[@id='page']/div/div/div/pv-login-reg-container/div/div/div/div[2]/div[2]/div[1]/pv-login/div/form/div/input[1]").send_keys(
-            "srihari")
+            "daisy.dalia")
+
         self.driver.find_element_by_xpath(
             "//*[@id='page']/div/div/div/pv-login-reg-container/div/div/div/div[2]/div[2]/div[1]/pv-login/div/form/div/input[2]").send_keys(
-            1234)
+            "dentrain")
 
         self.driver.find_element_by_xpath(
             "//*[@id='page']/div/div/div/pv-login-reg-container/div/div/div/div[2]/div[2]/div[1]/pv-login/div/form/div/input[3]").click()
-        self.driver.implicitly_wait(5000)
-        ErrorMessage = self.driver.find_element_by_xpath(
-            "//*[@id='page']/div/div/div/pv-login-reg-container/div/div/div/div[2]/div[2]/div[1]/pv-login/div/form/div/input[3]")
+        self.driver.implicitly_wait(10000)
 
-        if self.driver.page_source in 'Invalid username or password':
-            print("Entered Wrong User Credentials")
-        else:
-            print("Enter incorrect User Credentials")
+    def test_profile(self):
+        self.driver.find_element_by_xpath("//img[@ng-src='https://www.pitchvision.com/cdn/images/unknown.jpg']").click()
+        self.driver.find_element_by_xpath("//ul[@class='dropdown-menu dropdown-menu-right']/li[3]/a").click()
+        print(self.driver.current_url)
 
-        self.driver.implicitly_wait(5000)
-
-        GetTextMessage = ErrorMessage.text
-
-        print(GetTextMessage)
-        print("Test Passed")
 
     @classmethod
-    def tearDownClass(self):
-        self.driver.close()
-        self.driver.quit()
-        print(" Tests are completed")
+    def tearDownClass(cls):
+        cls.driver.close()
+
+if __name__== "__main__":
+    unittest.main()
+
+
+
