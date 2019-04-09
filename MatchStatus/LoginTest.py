@@ -7,7 +7,8 @@ class LoginORM(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         print(" Open Application")
-        cls.driver = webdriver.Chrome()
+        cls.driver = webdriver.Chrome(executable_path='/Library/Python/2.7/site-packages/chromedriver')
+
         cls.driver.get("https://opensource-demo.orangehrmlive.com/")
 
     def test_InValid_Login(self):
@@ -57,6 +58,13 @@ class LoginORM(unittest.TestCase):
         PageTitle = self.driver.title
         self.assertEqual(PageTitle, "OrangeHRM", " Title not match")
         print(PageTitle)
+        self.driver.implicitly_wait(4000)
+
+
+    def test_Logout_Page(self):
+        print("Reached..!!!")
+        self.driver.find_element_by_xpath("//a[@id='welcome']").click()
+        self.driver.find_element_by_xpath("//a[@href='/index.php/auth/logout']").click()
 
     @classmethod
     def tearDownClass(self):
