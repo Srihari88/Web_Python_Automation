@@ -10,13 +10,13 @@ class HomePageElements(unittest.TestCase):
         cls.driver = webdriver.Chrome()
         cls.driver.get("https://opensource-demo.orangehrmlive.com")
 
-    def test_password_textVerification(self):
+    def test_Apassword_textVerification(self):
         Credential = self.driver.find_element_by_xpath(
             "//span[contains(text(),'( Username : Admin | Password : admin123 )')]")
         print(Credential.text)
         self.assertEqual(Credential.text, "( Username : Admin | Password : admin123 )")
 
-    def text_link(self):
+    def text_Blink(self):
         Link = self.driver.find_element_by_xpath("//a[@href='http://www.orangehrm.com']")
         print(Link.text)
         self.assertEqual(Link.text, "http://www.orangehrm.com")
